@@ -1,0 +1,99 @@
+import Link from "next/link"
+import Image from "next/image"
+import { ChevronRight, Play } from "lucide-react"
+
+import { Button } from "@/components/ui/button"
+import { ContentCarousel } from "@/components/content-carousel"
+import { MainNav } from "@/components/main-nav"
+
+export default function Home() {
+  return (
+    <div className="flex min-h-screen flex-col bg-black text-white">
+      <header className="fixed top-0 z-50 w-full bg-gradient-to-b from-black/80 to-transparent backdrop-blur-sm">
+        <MainNav />
+      </header>
+
+      <main className="flex-1">
+        {/* Hero Section */}
+        <section className="relative h-[80vh] w-full">
+          <Image
+            src="https://s4.anilist.co/file/anilistcdn/media/manga/banner/30429-AcbubElaSTXB.jpg?height=1080&width=1920"
+            alt="Featured anime"
+            fill
+            className="object-cover brightness-50"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent" />
+          <div className="absolute bottom-0 left-0 p-8 md:p-16 space-y-4 max-w-3xl">
+            <div className="flex items-center gap-2 mb-2">
+              <Image
+                src="/placeholder.svg?height=60&width=60"
+                alt="Cat logo"
+                width={40}
+                height={40}
+                className="rounded-full"
+              />
+              <span className="text-pink-400 font-bold">NEKO ORIGINALS</span>
+            </div>
+            <h1 className="text-4xl md:text-6xl font-bold">My Neighbor Totoro</h1>
+            <p className="text-lg md:text-xl text-gray-200 max-w-2xl">
+              When two girls move to the country to be near their ailing mother, they have adventures with the wondrous
+              forest spirits who live nearby.
+            </p>
+            <div className="flex flex-wrap gap-4 pt-4">
+              <Button size="lg" className="bg-pink-600 hover:bg-pink-700">
+                <Play className="mr-2 h-5 w-5" /> Play
+              </Button>
+              <Button size="lg" variant="outline" className="border-white/20 bg-white/10 hover:bg-white/20">
+                More Info
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* Content Sections */}
+        <section className="px-4 md:px-16 py-8 space-y-8">
+          <ContentCarousel
+            title="Continue Watching"
+            items={[
+              { id: 1, title: "One Piece", type: "anime", episode: "Episode 1042", progress: 70 },
+              { id: 2, title: "Demon Slayer", type: "anime", episode: "Episode 8", progress: 45 },
+              { id: 3, title: "My Hero Academia", type: "anime", episode: "Episode 24", progress: 90 },
+              { id: 4, title: "Attack on Titan", type: "anime", episode: "Episode 12", progress: 30 },
+              { id: 5, title: "Jujutsu Kaisen", type: "anime", episode: "Episode 5", progress: 60 },
+            ]}
+          />
+
+          <ContentCarousel
+            title="Popular Manga"
+            items={[
+              { id: 6, title: "Chainsaw Man", type: "manga", chapter: "Chapter 120" },
+              { id: 7, title: "Spy x Family", type: "manga", chapter: "Chapter 65" },
+              { id: 8, title: "Tokyo Revengers", type: "manga", chapter: "Chapter 231" },
+              { id: 9, title: "Blue Lock", type: "manga", chapter: "Chapter 178" },
+              { id: 10, title: "One Punch Man", type: "manga", chapter: "Chapter 164" },
+            ]}
+          />
+
+          <ContentCarousel
+            title="Trending Now"
+            items={[
+              { id: 11, title: "Frieren: Beyond Journey's End", type: "anime" },
+              { id: 12, title: "Oshi no Ko", type: "anime" },
+              { id: 13, title: "Bocchi the Rock!", type: "anime" },
+              { id: 14, title: "Vinland Saga", type: "anime" },
+              { id: 15, title: "Mushoku Tensei", type: "anime" },
+            ]}
+          />
+
+          <div className="pt-4">
+            <Link href="/browse" className="inline-flex items-center text-sm text-gray-400 hover:text-pink-400">
+              View all anime and manga <ChevronRight className="h-4 w-4 ml-1" />
+            </Link>
+          </div>
+        </section>
+      </main>
+    </div>
+  )
+}
+
