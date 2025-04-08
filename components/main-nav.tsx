@@ -15,17 +15,18 @@ import {
 
 export function MainNav() {
   return (
-    <div className="container flex h-16 items-center justify-between py-4">
+    <div className="container mx-auto flex h-16 items-center justify-between py-4 px-4">
       <div className="flex items-center gap-6">
         <Link href="/" className="flex items-center gap-2">
           <Image
-            src="/Animatrixx_logo.png?height=40&width=40"
+            src="/placeholder.svg?height=40&width=40"
             alt="NekoAnime Logo"
             width={40}
             height={40}
             className="rounded-full"
+            priority
           />
-          <span className="hidden md:inline-block text-xl font-bold text-pink-400">Animatrixx</span>
+          <span className="hidden md:inline-block text-xl font-bold text-pink-400">NekoAnime</span>
         </Link>
         <nav className="hidden md:flex items-center gap-6">
           <Link href="/" className="text-sm font-medium hover:text-pink-400 transition-colors">
@@ -54,13 +55,13 @@ export function MainNav() {
             className="w-[200px] pl-8 bg-black/20 border-gray-700 focus-visible:ring-pink-500 text-sm"
           />
         </div>
-        <Button variant="ghost" size="icon" className="text-gray-300 hover:text-white">
+        <Button variant="ghost" size="icon" className="text-gray-300 hover:text-white" aria-label="Notifications">
           <Search className="h-5 w-5 md:hidden" />
           <Bell className="h-5 w-5 hidden md:block" />
         </Button>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" size="icon" className="rounded-full">
+            <Button variant="ghost" size="icon" className="rounded-full" aria-label="User menu">
               <User className="h-5 w-5" />
             </Button>
           </DropdownMenuTrigger>
@@ -94,4 +95,3 @@ export function MainNav() {
     </div>
   )
 }
-

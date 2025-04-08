@@ -1,15 +1,47 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Bookmark, ChevronLeft, Heart, Play, Share2, Star } from "lucide-react"
+import type { Metadata } from "next"
+import { notFound } from "next/navigation"
 
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { MainNav } from "@/components/main-nav"
 import { EpisodeList } from "@/components/episode-list"
+import { Footer } from "@/components/footer"
+import { getEpisodes } from "@/lib/data"
 
-export default function AnimeDetailPage({ params }: { params: { id: string } }) {
+interface AnimeDetailPageProps {
+  params: { id: string }
+}
+
+export async function generateMetadata({ params }: AnimeDetailPageProps): Promise<Metadata> {
   // In a real app, you would fetch anime data based on the ID
   const animeId = Number.parseInt(params.id)
+
+  if (isNaN(animeId)) {
+    return {
+      title: "Anime Not Found | NekoAnime",
+      description: "The requested anime could not be found",
+    }
+  }
+
+  return {
+    title: `My Hero Academia | NekoAnime`,
+    description: "Watch My Hero Academia on NekoAnime - the best anime streaming platform",
+    openGraph: {
+      images: [`/placeholder.svg?height=630&width=1200&text=Anime ${params.id}`],
+    },
+  }
+}
+
+export default function AnimeDetailPage({ params }: AnimeDetailPageProps) {
+  // In a real app, you would fetch anime data based on the ID
+  const animeId = Number.parseInt(params.id)
+
+  if (isNaN(animeId)) {
+    notFound()
+  }
 
   // Mock anime data
   const anime = {
@@ -33,29 +65,16 @@ export default function AnimeDetailPage({ params }: { params: { id: string } }) 
     alternativeTitles: ["僕のヒーローアカデミア", "Boku no Hero Academia", "BNHA"],
   }
 
-  // Mock episodes data
-  const episodes = Array.from({ length: 24 }, (_, i) => ({
-    id: i + 1,
-    number: i + 1,
-    title: `Episode ${i + 1}: ${["A New Beginning", "The Hero's Journey", "Darkness Falls", "Rising Hope", "Final Battle"][i % 5]}`,
-    thumbnail: `/placeholder.svg?height=180&width=320&text=Episode ${i + 1}`,
-    duration: "24 min",
-    releaseDate: new Date(2025, 3, 5 - i).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-    }),
-    description: "Izuku faces new challenges as he continues his journey to become the greatest hero.",
-    isWatched: i < 5,
-  }))
+  // Get episodes data
+  const episodes = getEpisodes(animeId)
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-black text-white flex flex-col">
       <header className="fixed top-0 z-50 w-full bg-gradient-to-b from-black/80 to-transparent backdrop-blur-sm">
         <MainNav />
       </header>
 
-      <main className="pt-16">
+      <main className="flex-1 pt-16">
         {/* Banner */}
         <div className="relative h-[40vh] md:h-[50vh] w-full">
           <Image
@@ -63,11 +82,13 @@ export default function AnimeDetailPage({ params }: { params: { id: string } }) 
             alt={anime.title}
             fill
             className="object-cover brightness-50"
+            priority
+            sizes="100vw"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent" />
         </div>
 
-        <div className="container px-4 py-6 -mt-32 relative z-10">
+        <div className="container px-4 py-6 -mt-32 relative z-10 mx-auto">
           <div className="flex items-center justify-between mb-6">
             <Link href="/anime" className="flex items-center gap-2 text-gray-400 hover:text-white">
               <ChevronLeft className="h-5 w-5" />
@@ -75,13 +96,13 @@ export default function AnimeDetailPage({ params }: { params: { id: string } }) 
             </Link>
 
             <div className="flex items-center gap-2">
-              <Button variant="ghost" size="icon" className="rounded-full">
+              <Button variant="ghost" size="icon" className="rounded-full" aria-label="Bookmark">
                 <Bookmark className="h-5 w-5" />
               </Button>
-              <Button variant="ghost" size="icon" className="rounded-full">
+              <Button variant="ghost" size="icon" className="rounded-full" aria-label="Like">
                 <Heart className="h-5 w-5" />
               </Button>
-              <Button variant="ghost" size="icon" className="rounded-full">
+              <Button variant="ghost" size="icon" className="rounded-full" aria-label="Share">
                 <Share2 className="h-5 w-5" />
               </Button>
             </div>
@@ -91,7 +112,14 @@ export default function AnimeDetailPage({ params }: { params: { id: string } }) 
             <div className="w-full md:w-1/3 lg:w-1/4 xl:w-1/5">
               <div className="sticky top-24">
                 <div className="aspect-[2/3] relative rounded-lg overflow-hidden mb-4">
-                  <Image src={anime.cover || "/placeholder.svg"} alt={anime.title} fill className="object-cover" />
+                  <Image
+                    src={anime.cover || "/placeholder.svg"}
+                    alt={anime.title}
+                    fill
+                    className="object-cover"
+                    priority
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 33vw, 20vw"
+                  />
                 </div>
 
                 <div className="flex gap-3 mb-4">
@@ -111,35 +139,35 @@ export default function AnimeDetailPage({ params }: { params: { id: string } }) 
                 <div className="space-y-3 text-sm">
                   <div>
                     <div className="text-gray-400">Status</div>
-                    <div>{anime.status}</div>
+                    <div className="text-white">{anime.status}</div>
                   </div>
                   <div>
                     <div className="text-gray-400">Type</div>
-                    <div>{anime.type}</div>
+                    <div className="text-white">{anime.type}</div>
                   </div>
                   <div>
                     <div className="text-gray-400">Release Year</div>
-                    <div>{anime.releaseYear}</div>
+                    <div className="text-white">{anime.releaseYear}</div>
                   </div>
                   <div>
                     <div className="text-gray-400">Studio</div>
-                    <div>{anime.studio}</div>
+                    <div className="text-white">{anime.studio}</div>
                   </div>
                   <div>
                     <div className="text-gray-400">Duration</div>
-                    <div>{anime.duration}</div>
+                    <div className="text-white">{anime.duration}</div>
                   </div>
                   <div>
                     <div className="text-gray-400">Seasons</div>
-                    <div>{anime.seasons}</div>
+                    <div className="text-white">{anime.seasons}</div>
                   </div>
                   <div>
                     <div className="text-gray-400">Next Episode</div>
-                    <div>{anime.nextEpisode}</div>
+                    <div className="text-white">{anime.nextEpisode}</div>
                   </div>
                   <div>
                     <div className="text-gray-400">Alternative Titles</div>
-                    <div className="text-xs">{anime.alternativeTitles.join(", ")}</div>
+                    <div className="text-xs text-white">{anime.alternativeTitles.join(", ")}</div>
                   </div>
                 </div>
               </div>
@@ -173,7 +201,8 @@ export default function AnimeDetailPage({ params }: { params: { id: string } }) 
           </div>
         </div>
       </main>
+
+      <Footer />
     </div>
   )
 }
-

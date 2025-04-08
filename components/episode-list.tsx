@@ -127,4 +127,3 @@ export function EpisodeList({ episodes, animeId }: EpisodeListProps) {
     </div>
   )
 }
-

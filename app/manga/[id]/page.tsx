@@ -1,15 +1,47 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Bookmark, ChevronLeft, Heart, Share2, Star } from "lucide-react"
+import type { Metadata } from "next"
+import { notFound } from "next/navigation"
 
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { MainNav } from "@/components/main-nav"
 import { ChapterList } from "@/components/chapter-list"
+import { Footer } from "@/components/footer"
+import { getChapters } from "@/lib/data"
 
-export default function MangaDetailPage({ params }: { params: { id: string } }) {
+interface MangaDetailPageProps {
+  params: { id: string }
+}
+
+export async function generateMetadata({ params }: MangaDetailPageProps): Promise<Metadata> {
   // In a real app, you would fetch manga data based on the ID
   const mangaId = Number.parseInt(params.id)
+
+  if (isNaN(mangaId)) {
+    return {
+      title: "Manga Not Found | NekoAnime",
+      description: "The requested manga could not be found",
+    }
+  }
+
+  return {
+    title: `Chainsaw Man | NekoAnime`,
+    description: "Read Chainsaw Man on NekoAnime - the best manga reading platform",
+    openGraph: {
+      images: [`/placeholder.svg?height=630&width=1200&text=Manga ${params.id}`],
+    },
+  }
+}
+
+export default function MangaDetailPage({ params }: MangaDetailPageProps) {
+  // In a real app, you would fetch manga data based on the ID
+  const mangaId = Number.parseInt(params.id)
+
+  if (isNaN(mangaId)) {
+    notFound()
+  }
 
   // Mock manga data
   const manga = {
@@ -30,28 +62,17 @@ export default function MangaDetailPage({ params }: { params: { id: string } }) 
     alternativeTitles: ["チェンソーマン", "Человек-бензопила", "Hombre Motosierra"],
   }
 
-  // Mock chapters data
-  const chapters = Array.from({ length: 120 }, (_, i) => ({
-    id: 120 - i,
-    number: 120 - i,
-    title: `Chapter ${120 - i}: ${["The Awakening", "Darkness Falls", "New Beginnings", "The Hunt", "Revelations"][i % 5]}`,
-    releaseDate: new Date(2025, 3, 2 - i).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-    }),
-    pages: Math.floor(Math.random() * 20) + 15,
-    isRead: i < 5,
-  }))
+  // Get chapters data
+  const chapters = getChapters(mangaId)
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-black text-white flex flex-col">
       <header className="fixed top-0 z-50 w-full bg-gradient-to-b from-black/80 to-transparent backdrop-blur-sm">
         <MainNav />
       </header>
 
-      <main className="pt-16">
-        <div className="container px-4 py-6">
+      <main className="flex-1 pt-16">
+        <div className="container px-4 py-6 mx-auto">
           <div className="flex items-center justify-between mb-6">
             <Link href="/manga" className="flex items-center gap-2 text-gray-400 hover:text-white">
               <ChevronLeft className="h-5 w-5" />
@@ -59,13 +80,13 @@ export default function MangaDetailPage({ params }: { params: { id: string } }) 
             </Link>
 
             <div className="flex items-center gap-2">
-              <Button variant="ghost" size="icon" className="rounded-full">
+              <Button variant="ghost" size="icon" className="rounded-full" aria-label="Bookmark">
                 <Bookmark className="h-5 w-5" />
               </Button>
-              <Button variant="ghost" size="icon" className="rounded-full">
+              <Button variant="ghost" size="icon" className="rounded-full" aria-label="Like">
                 <Heart className="h-5 w-5" />
               </Button>
-              <Button variant="ghost" size="icon" className="rounded-full">
+              <Button variant="ghost" size="icon" className="rounded-full" aria-label="Share">
                 <Share2 className="h-5 w-5" />
               </Button>
             </div>
@@ -75,7 +96,14 @@ export default function MangaDetailPage({ params }: { params: { id: string } }) 
             <div className="w-full md:w-1/3 lg:w-1/4 xl:w-1/5">
               <div className="sticky top-24">
                 <div className="aspect-[2/3] relative rounded-lg overflow-hidden mb-4">
-                  <Image src={manga.cover || "/placeholder.svg"} alt={manga.title} fill className="object-cover" />
+                  <Image
+                    src={manga.cover || "/placeholder.svg"}
+                    alt={manga.title}
+                    fill
+                    className="object-cover"
+                    priority
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 33vw, 20vw"
+                  />
                 </div>
 
                 <div className="flex gap-3 mb-4">
@@ -93,31 +121,31 @@ export default function MangaDetailPage({ params }: { params: { id: string } }) 
                 <div className="space-y-3 text-sm">
                   <div>
                     <div className="text-gray-400">Status</div>
-                    <div>{manga.status}</div>
+                    <div className="text-white">{manga.status}</div>
                   </div>
                   <div>
                     <div className="text-gray-400">Release Year</div>
-                    <div>{manga.releaseYear}</div>
+                    <div className="text-white">{manga.releaseYear}</div>
                   </div>
                   <div>
                     <div className="text-gray-400">Author</div>
-                    <div>{manga.author}</div>
+                    <div className="text-white">{manga.author}</div>
                   </div>
                   <div>
                     <div className="text-gray-400">Artist</div>
-                    <div>{manga.artist}</div>
+                    <div className="text-white">{manga.artist}</div>
                   </div>
                   <div>
                     <div className="text-gray-400">Publisher</div>
-                    <div>{manga.publisher}</div>
+                    <div className="text-white">{manga.publisher}</div>
                   </div>
                   <div>
                     <div className="text-gray-400">Last Updated</div>
-                    <div>{manga.lastUpdated}</div>
+                    <div className="text-white">{manga.lastUpdated}</div>
                   </div>
                   <div>
                     <div className="text-gray-400">Alternative Titles</div>
-                    <div className="text-xs">{manga.alternativeTitles.join(", ")}</div>
+                    <div className="text-xs text-white">{manga.alternativeTitles.join(", ")}</div>
                   </div>
                 </div>
               </div>
@@ -151,7 +179,8 @@ export default function MangaDetailPage({ params }: { params: { id: string } }) 
           </div>
         </div>
       </main>
+
+      <Footer />
     </div>
   )
 }
-

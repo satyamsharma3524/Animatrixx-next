@@ -62,4 +62,3 @@ export function ContentCarousel({ title, items }: ContentCarouselProps) {
     </div>
   )
 }
-
