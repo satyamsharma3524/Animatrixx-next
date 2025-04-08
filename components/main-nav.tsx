@@ -20,13 +20,13 @@ export function MainNav() {
         <Link href="/" className="flex items-center gap-2">
           <Image
             src="/placeholder.svg?height=40&width=40"
-            alt="NekoAnime Logo"
+            alt="Animatrixx Logo"
             width={40}
             height={40}
             className="rounded-full"
             priority
           />
-          <span className="hidden md:inline-block text-xl font-bold text-pink-400">NekoAnime</span>
+          <span className="hidden md:inline-block text-xl font-bold text-pink-400">Animatrixx</span>
         </Link>
         <nav className="hidden md:flex items-center gap-6">
           <Link href="/" className="text-sm font-medium hover:text-pink-400 transition-colors">

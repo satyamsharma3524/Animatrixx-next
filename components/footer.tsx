@@ -11,12 +11,12 @@ export function Footer() {
             <Link href="/" className="flex items-center gap-2 mb-4">
               <Image
                 src="/placeholder.svg?height=40&width=40"
-                alt="NekoAnime Logo"
+                alt="Animatrixx Logo"
                 width={40}
                 height={40}
                 className="rounded-full"
               />
-              <span className="text-xl font-bold text-pink-400">NekoAnime</span>
+              <span className="text-xl font-bold text-pink-400">Animatrixx</span>
             </Link>
             <p className="text-gray-400 text-sm mb-4">
               The best platform to watch anime and read manga with a cute cat theme.
@@ -135,7 +135,7 @@ export function Footer() {
         </div>
 
         <div className="border-t border-zinc-800 pt-6 mt-6 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-sm">© {new Date().getFullYear()} NekoAnime. All rights reserved.</p>
+          <p className="text-gray-400 text-sm">© {new Date().getFullYear()} Animatrixx. All rights reserved.</p>
           <div className="flex space-x-4 mt-4 md:mt-0">
             <Link href="/terms" className="text-gray-400 hover:text-pink-400 text-xs">
               Terms

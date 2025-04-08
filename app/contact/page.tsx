@@ -4,8 +4,8 @@ import { Footer } from "@/components/footer"
 import { ContactForm } from "@/components/contact-form"
 
 export const metadata = {
-  title: "Contact Us | NekoAnime",
-  description: "Get in touch with the NekoAnime team for support, feedback, or business inquiries",
+  title: "Contact Us | Animatrixx",
+  description: "Get in touch with the Animatrixx team for support, feedback, or business inquiries",
 }
 
 export default function ContactPage() {
@@ -33,8 +33,8 @@ export default function ContactPage() {
                 </div>
                 <h3 className="font-semibold mb-2">Email Us</h3>
                 <p className="text-gray-400 text-sm mb-3">For general inquiries and support</p>
-                <a href="mailto:support@nekoanime.com" className="text-pink-400 hover:underline">
-                  support@nekoanime.com
+                <a href="mailto:support@animatrixx.in" className="text-pink-400 hover:underline">
+                  support@animatrixx.in
                 </a>
               </div>
 
@@ -70,14 +70,14 @@ export default function ContactPage() {
                 <div className="bg-zinc-900 p-6 rounded-lg">
                   <h3 className="font-semibold mb-2">How do I report a technical issue?</h3>
                   <p className="text-gray-400">
-                    If you're experiencing technical issues, please email us at support@nekoanime.com with details about
+                    If you're experiencing technical issues, please email us at support@animatrixx.in with details about
                     the problem, including your device, browser, and steps to reproduce the issue.
                   </p>
                 </div>
                 <div className="bg-zinc-900 p-6 rounded-lg">
                   <h3 className="font-semibold mb-2">How can I request a new anime or manga to be added?</h3>
                   <p className="text-gray-400">
-                    You can request new content by filling out the form above or by emailing us at content@nekoanime.com
+                    You can request new content by filling out the form above or by emailing us at admin@animatrixx.in
                     with the title and any additional information.
                   </p>
                 </div>
@@ -85,7 +85,7 @@ export default function ContactPage() {
                   <h3 className="font-semibold mb-2">Do you offer business partnerships or advertising?</h3>
                   <p className="text-gray-400">
                     Yes, we're open to partnerships and advertising opportunities. Please contact our business team at
-                    business@nekoanime.com for more information.
+                    satyam@animatrixx.in for more information.
                   </p>
                 </div>
               </div>
