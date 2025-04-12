@@ -68,38 +68,40 @@ export function SettingsTabs() {
 
       <div className="flex-1">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-8">
-          <TabsList className="bg-zinc-900 border-b border-zinc-800 p-0 h-auto w-full justify-start rounded-none">
-            <TabsTrigger
-              value="account"
-              className="py-3 px-6 rounded-none data-[state=active]:bg-transparent data-[state=active]:border-b-2 data-[state=active]:border-pink-500 data-[state=active]:shadow-none"
-            >
-              Account
-            </TabsTrigger>
-            <TabsTrigger
-              value="appearance"
-              className="py-3 px-6 rounded-none data-[state=active]:bg-transparent data-[state=active]:border-b-2 data-[state=active]:border-pink-500 data-[state=active]:shadow-none"
-            >
-              Appearance
-            </TabsTrigger>
-            <TabsTrigger
-              value="playback"
-              className="py-3 px-6 rounded-none data-[state=active]:bg-transparent data-[state=active]:border-b-2 data-[state=active]:border-pink-500 data-[state=active]:shadow-none"
-            >
-              Playback
-            </TabsTrigger>
-            <TabsTrigger
-              value="notifications"
-              className="py-3 px-6 rounded-none data-[state=active]:bg-transparent data-[state=active]:border-b-2 data-[state=active]:border-pink-500 data-[state=active]:shadow-none"
-            >
-              Notifications
-            </TabsTrigger>
-            <TabsTrigger
-              value="privacy"
-              className="py-3 px-6 rounded-none data-[state=active]:bg-transparent data-[state=active]:border-b-2 data-[state=active]:border-pink-500 data-[state=active]:shadow-none"
-            >
-              Privacy
-            </TabsTrigger>
-          </TabsList>
+          <div className="overflow-x-auto scrollbar-hide">
+            <TabsList className="bg-zinc-900 border-b border-zinc-800 p-0 h-auto w-full justify-start rounded-none">
+              <TabsTrigger
+                value="account"
+                className="py-3 px-6 rounded-none data-[state=active]:bg-transparent data-[state=active]:border-b-2 data-[state=active]:border-pink-500 data-[state=active]:shadow-none"
+              >
+                Account
+              </TabsTrigger>
+              <TabsTrigger
+                value="appearance"
+                className="py-3 px-6 rounded-none data-[state=active]:bg-transparent data-[state=active]:border-b-2 data-[state=active]:border-pink-500 data-[state=active]:shadow-none"
+              >
+                Appearance
+              </TabsTrigger>
+              <TabsTrigger
+                value="playback"
+                className="py-3 px-6 rounded-none data-[state=active]:bg-transparent data-[state=active]:border-b-2 data-[state=active]:border-pink-500 data-[state=active]:shadow-none"
+              >
+                Playback
+              </TabsTrigger>
+              <TabsTrigger
+                value="notifications"
+                className="py-3 px-6 rounded-none data-[state=active]:bg-transparent data-[state=active]:border-b-2 data-[state=active]:border-pink-500 data-[state=active]:shadow-none"
+              >
+                Notifications
+              </TabsTrigger>
+              <TabsTrigger
+                value="privacy"
+                className="py-3 px-6 rounded-none data-[state=active]:bg-transparent data-[state=active]:border-b-2 data-[state=active]:border-pink-500 data-[state=active]:shadow-none"
+              >
+                Privacy
+              </TabsTrigger>
+            </TabsList>
+          </div>
 
           <TabsContent value="account" className="mt-6 space-y-8">
             <AccountSettings />
