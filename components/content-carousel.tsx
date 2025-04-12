@@ -158,7 +158,7 @@ export function ContentCarousel({ title, items }: ContentCarouselProps) {
         {items.map((item) => (
           <motion.div
             key={`${item.type}-${item.id}`}
-            className={`flex-none w-[calc(100%/${itemsPerView}-${((itemsPerView - 1) * 16) / itemsPerView}px)] snap-start`}
+            className="flex-none w-[45%] sm:w-[30%] md:w-[20%] lg:w-[18%] xl:w-[16%] snap-start"
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.2 }}
           >
