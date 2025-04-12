@@ -68,7 +68,7 @@ export default function Home() {
                 height={40}
                 className="rounded-full"
               />
-              <span className="text-pink-400 font-bold">NEKO ORIGINALS</span>
+              <span className="text-pink-400 font-bold">Animatrixx ORIGINALS</span>
             </div>
             <h1 className="text-4xl md:text-6xl font-bold">{featuredContent.title}</h1>
             <p className="text-lg md:text-xl text-gray-200 max-w-2xl">{featuredContent.description}</p>

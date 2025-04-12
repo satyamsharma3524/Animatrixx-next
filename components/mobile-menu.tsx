@@ -35,7 +35,7 @@ export function MobileMenu() {
       <SheetContent side="left" className="p-0 bg-zinc-950 border-zinc-800 text-white w-[280px]">
         <div className="flex flex-col h-full">
           <div className="p-4 border-b border-zinc-800 flex items-center justify-between">
-            <h2 className="text-xl font-bold text-pink-400">NekoAnime</h2>
+            <h2 className="text-xl font-bold text-pink-400">Animatrixx</h2>
             <Button variant="ghost" size="icon" onClick={() => setOpen(false)} aria-label="Close menu">
               <X className="h-5 w-5" />
             </Button>

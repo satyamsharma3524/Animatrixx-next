@@ -21,14 +21,14 @@ export async function generateMetadata({ params }: AnimeDetailPageProps): Promis
 
   if (isNaN(animeId)) {
     return {
-      title: "Anime Not Found | NekoAnime",
+      title: "Anime Not Found | Animatrixx",
       description: "The requested anime could not be found",
     }
   }
 
   return {
-    title: `My Hero Academia | NekoAnime`,
-    description: "Watch My Hero Academia on NekoAnime - the best anime streaming platform",
+    title: `My Hero Academia | Animatrixx`,
+    description: "Watch My Hero Academia on Animatrixx - the best anime streaming platform",
     openGraph: {
       images: [`/placeholder.svg?height=630&width=1200&text=Anime ${params.id}`],
     },

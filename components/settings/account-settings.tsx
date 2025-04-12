@@ -40,7 +40,7 @@ export function AccountSettings() {
               </Button>
             </div>
             <div className="space-y-1">
-              <h3 className="font-medium">Neko Lover</h3>
+              <h3 className="font-medium">Animatrixx Lover</h3>
               <p className="text-sm text-gray-400">@nekolover123</p>
               <p className="text-sm text-gray-400">Member since April 2023</p>
             </div>
@@ -72,7 +72,7 @@ export function AccountSettings() {
               <Label htmlFor="firstName">First Name</Label>
               <Input
                 id="firstName"
-                defaultValue="Neko"
+                defaultValue="Animatrixx"
                 className="bg-zinc-800 border-zinc-700 focus-visible:ring-pink-500"
                 disabled={!isEditing}
               />

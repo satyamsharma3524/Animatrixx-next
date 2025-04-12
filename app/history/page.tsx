@@ -4,8 +4,8 @@ import { Footer } from "@/components/footer"
 import { HistoryContent } from "@/components/history/history-content"
 
 export const metadata: Metadata = {
-  title: "Watch History | NekoAnime",
-  description: "View your anime and manga watch and read history on NekoAnime",
+  title: "Watch History | Animatrixx",
+  description: "View your anime and manga watch and read history on Animatrixx",
 }
 
 export default function HistoryPage() {

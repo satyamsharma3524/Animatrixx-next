@@ -4,8 +4,8 @@ import { Footer } from "@/components/footer"
 import { MyListContent } from "@/components/my-list/my-list-content"
 
 export const metadata: Metadata = {
-  title: "My List | NekoAnime",
-  description: "Your saved anime and manga collection on NekoAnime",
+  title: "My List | Animatrixx",
+  description: "Your saved anime and manga collection on Animatrixx",
 }
 
 export default function MyListPage() {

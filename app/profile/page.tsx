@@ -44,7 +44,7 @@ export default function ProfilePage() {
               <div className="flex-1 pt-4 md:pt-20">
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                   <div>
-                    <h1 className="text-3xl font-bold">Neko Lover</h1>
+                    <h1 className="text-3xl font-bold">Animatrixx Lover</h1>
                     <p className="text-gray-400">@nekolover123</p>
                   </div>
                   <div className="flex gap-3">

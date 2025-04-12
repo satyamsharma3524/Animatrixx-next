@@ -88,13 +88,13 @@ export function Footer() {
               <motion.div whileHover={{ rotate: 10 }} transition={{ duration: 0.2 }}>
                 <Image
                   src="/placeholder.svg?height=40&width=40"
-                  alt="NekoAnime Logo"
+                  alt="Animatrixx Logo"
                   width={40}
                   height={40}
                   className="rounded-full"
                 />
               </motion.div>
-              <span className="text-xl font-bold text-pink-400">NekoAnime</span>
+              <span className="text-xl font-bold text-pink-400">Animatrixx</span>
             </Link>
             <p className="text-gray-400 text-sm mb-4">
               The best platform to watch anime and read manga with a cute cat theme.
@@ -182,7 +182,7 @@ export function Footer() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.5 }}
         >
-          <p className="text-gray-400 text-sm">© {new Date().getFullYear()} NekoAnime. All rights reserved.</p>
+          <p className="text-gray-400 text-sm">© {new Date().getFullYear()} Animatrixx. All rights reserved.</p>
           <div className="flex space-x-4 mt-4 md:mt-0">
             {["Terms", "Privacy", "Cookies", "Licenses"].map((item, index) => (
               <motion.div key={item} whileHover={{ y: -2 }} transition={{ duration: 0.2 }}>

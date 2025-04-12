@@ -10,8 +10,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 export const metadata: Metadata = {
-  title: "Manga Library | NekoAnime",
-  description: "Browse and read the best manga series on NekoAnime",
+  title: "Manga Library | Animatrixx",
+  description: "Browse and read the best manga series on Animatrixx",
 }
 
 export default function MangaListPage() {

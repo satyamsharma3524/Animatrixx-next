@@ -11,8 +11,8 @@ import { AnimeList } from "@/components/anime/anime-list"
 import { getAnimeList } from "@/lib/data"
 
 export const metadata: Metadata = {
-  title: "Anime Library | NekoAnime",
-  description: "Browse and watch the best anime series and movies on NekoAnime",
+  title: "Anime Library | Animatrixx",
+  description: "Browse and watch the best anime series and movies on Animatrixx",
 }
 
 export default function AnimeListPage() {

@@ -32,7 +32,7 @@ export function MainNav() {
           <motion.div whileHover={{ rotate: 10 }} transition={{ duration: 0.2 }}>
             <Image
               src="/placeholder.svg?height=40&width=40"
-              alt="NekoAnime Logo"
+              alt="Animatrixx Logo"
               width={40}
               height={40}
               className="rounded-full"
@@ -45,7 +45,7 @@ export function MainNav() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.1, duration: 0.3 }}
           >
-            NekoAnime
+            Animatrixx
           </motion.span>
         </Link>
         <nav className="hidden md:flex items-center gap-6">
