@@ -21,14 +21,14 @@ export async function generateMetadata({ params }: MangaDetailPageProps): Promis
 
   if (isNaN(mangaId)) {
     return {
-      title: "Manga Not Found | Animatrixx",
+      title: "Manga Not Found | NekoAnime",
       description: "The requested manga could not be found",
     }
   }
 
   return {
-    title: `Chainsaw Man | Animatrixx`,
-    description: "Read Chainsaw Man on Animatrixx - the best manga reading platform",
+    title: `Chainsaw Man | NekoAnime`,
+    description: "Read Chainsaw Man on NekoAnime - the best manga reading platform",
     openGraph: {
       images: [`/placeholder.svg?height=630&width=1200&text=Manga ${params.id}`],
     },

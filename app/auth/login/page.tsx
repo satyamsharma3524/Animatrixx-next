@@ -29,12 +29,12 @@ export default function LoginPage() {
         <Link href="/" className="flex items-center gap-2">
           <Image
             src="/placeholder.svg?height=40&width=40"
-            alt="Animatrixx Logo"
+            alt="NekoAnime Logo"
             width={40}
             height={40}
             className="rounded-full"
           />
-          <span className="text-xl font-bold text-pink-400">Animatrixx</span>
+          <span className="text-xl font-bold text-pink-400">NekoAnime</span>
         </Link>
       </div>
 
@@ -42,7 +42,7 @@ export default function LoginPage() {
         <div className="w-full max-w-md space-y-8 bg-zinc-900 p-8 rounded-lg border border-zinc-800">
           <div className="text-center">
             <h1 className="text-2xl font-bold">Sign In</h1>
-            <p className="text-gray-400 mt-2">Welcome back to Animatrixx!</p>
+            <p className="text-gray-400 mt-2">Welcome back to NekoAnime!</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -106,7 +106,7 @@ export default function LoginPage() {
       </div>
 
       <footer className="py-6 text-center text-sm text-gray-500">
-        <p>© 2025 Animatrixx. All rights reserved.</p>
+        <p>© 2025 NekoAnime. All rights reserved.</p>
       </footer>
     </div>
   )

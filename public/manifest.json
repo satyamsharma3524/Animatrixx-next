@@ -1,7 +1,7 @@
 {
-  "name": "Animatrixx",
-  "short_name": "Animatrixx",
-  "description": "Watch anime and read manga with Animatrixx - the best anime and manga streaming platform",
+  "name": "NekoAnime",
+  "short_name": "NekoAnime",
+  "description": "Watch anime and read manga with NekoAnime - the best anime and manga streaming platform",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#000000",

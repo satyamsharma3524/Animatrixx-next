@@ -29,12 +29,12 @@ export default function RegisterPage() {
         <Link href="/" className="flex items-center gap-2">
           <Image
             src="/placeholder.svg?height=40&width=40"
-            alt="Animatrixx Logo"
+            alt="NekoAnime Logo"
             width={40}
             height={40}
             className="rounded-full"
           />
-          <span className="text-xl font-bold text-pink-400">Animatrixx</span>
+          <span className="text-xl font-bold text-pink-400">NekoAnime</span>
         </Link>
       </div>
 
@@ -42,7 +42,7 @@ export default function RegisterPage() {
         <div className="w-full max-w-md space-y-6 bg-zinc-900 p-8 rounded-lg border border-zinc-800">
           <div className="text-center">
             <h1 className="text-2xl font-bold">Create an Account</h1>
-            <p className="text-gray-400 mt-2">Join the Animatrixx community today!</p>
+            <p className="text-gray-400 mt-2">Join the NekoAnime community today!</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -146,7 +146,7 @@ export default function RegisterPage() {
       </div>
 
       <footer className="py-6 text-center text-sm text-gray-500">
-        <p>© 2025 Animatrixx. All rights reserved.</p>
+        <p>© 2025 NekoAnime. All rights reserved.</p>
       </footer>
     </div>
   )

@@ -1,9 +1,8 @@
 import type React from "react"
-import { SpeedInsights } from "@vercel/speed-insights/next"
 import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
+import { Providers } from "./providers"
 import { Toaster } from "@/components/ui/toaster"
 
 const inter = Inter({
@@ -21,36 +20,36 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: "Animatrixx - Anime & Manga Streaming",
-    template: "%s | Animatrixx",
+    default: "NekoAnime - Anime & Manga Streaming",
+    template: "%s | NekoAnime",
   },
-  description: "Watch anime and read manga with Animatrixx - the best anime and manga streaming platform",
+  description: "Watch anime and read manga with NekoAnime - the best anime and manga streaming platform",
   keywords: ["anime", "manga", "streaming", "watch anime", "read manga", "neko", "cat"],
-  authors: [{ name: "Animatrixx Team" }],
-  creator: "Animatrixx",
-  metadataBase: new URL("https://animatrixx.in"),
+  authors: [{ name: "NekoAnime Team" }],
+  creator: "NekoAnime",
+  metadataBase: new URL("https://nekoanime.vercel.app"),
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://animatrixx.in",
-    siteName: "Animatrixx",
-    title: "Animatrixx - Anime & Manga Streaming",
-    description: "Watch anime and read manga with Animatrixx - the best anime and manga streaming platform",
+    url: "https://nekoanime.vercel.app",
+    siteName: "NekoAnime",
+    title: "NekoAnime - Anime & Manga Streaming",
+    description: "Watch anime and read manga with NekoAnime - the best anime and manga streaming platform",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Animatrixx",
+        alt: "NekoAnime",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Animatrixx - Anime & Manga Streaming",
-    description: "Watch anime and read manga with Animatrixx - the best anime and manga streaming platform",
+    title: "NekoAnime - Anime & Manga Streaming",
+    description: "Watch anime and read manga with NekoAnime - the best anime and manga streaming platform",
     images: ["/og-image.jpg"],
-    creator: "@animatrixx.in",
+    creator: "@nekoanime",
   },
   manifest: "/manifest.json",
     generator: 'v0.dev'
@@ -63,12 +62,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className={inter.variable}>
-      <body className="min-h-screen bg-black antialiased">
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+      <body className="min-h-screen bg-background text-foreground antialiased">
+        <Providers>
           {children}
           <Toaster />
-        </ThemeProvider>
-        <SpeedInsights />
+        </Providers>
       </body>
     </html>
   )

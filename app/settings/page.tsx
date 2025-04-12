@@ -4,8 +4,8 @@ import { Footer } from "@/components/footer"
 import { SettingsTabs } from "@/components/settings/settings-tabs"
 
 export const metadata: Metadata = {
-  title: "Settings | Animatrixx",
-  description: "Manage your Animatrixx account settings and preferences",
+  title: "Settings | NekoAnime",
+  description: "Manage your NekoAnime account settings and preferences",
 }
 
 export default function SettingsPage() {
