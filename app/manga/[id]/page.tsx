@@ -16,26 +16,25 @@ interface MangaDetailPageProps {
 }
 
 export async function generateMetadata({ params }: MangaDetailPageProps): Promise<Metadata> {
-  // In a real app, you would fetch manga data based on the ID
   const mangaId = Number.parseInt(params.id)
 
   if (isNaN(mangaId)) {
     return {
-      title: "Manga Not Found | Animatrixx",
-      description: "The requested manga could not be found",
+      title: "Manga Not Found",
+      description: "Invalid manga ID",
     }
   }
 
   return {
-    title: `Chainsaw Man | Animatrixx`,
-    description: "Read Chainsaw Man on Animatrixx - the best manga reading platform",
+    title: `Read Manga ${mangaId} - Animatrixx`,
+    description: "Read amazing manga on Animatrixx",
     openGraph: {
-      images: [`/placeholder.svg?height=630&width=1200&text=Manga ${params.id}`],
+      images: [`/placeholder.svg?height=630&width=1200&text=Manga ${mangaId}`],
     },
   }
 }
 
-export default function MangaDetailPage({ params }: MangaDetailPageProps) {
+export default async function MangaDetailPage({ params }: MangaDetailPageProps) {
   // In a real app, you would fetch manga data based on the ID
   const mangaId = Number.parseInt(params.id)
 

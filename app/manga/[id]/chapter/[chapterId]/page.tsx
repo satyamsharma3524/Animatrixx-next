@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState, useEffect } from "react"
+import { use, useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
@@ -29,11 +29,13 @@ import { Label } from "@/components/ui/label"
 export default function MangaReaderPage({
   params,
 }: {
-  params: { id: string; chapterId: string }
+  params: Promise<{ id: string; chapter_id: string }>
 }) {
   const router = useRouter()
-  const mangaId = Number.parseInt(params.id)
-  const chapterId = Number.parseInt(params.chapterId)
+  // unwrap the params promise
+  const { id, chapter_id } = use(params)
+  const mangaId = Number.parseInt(id)
+  const chapterId = Number.parseInt(chapter_id)
 
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [showControls, setShowControls] = useState(true)
