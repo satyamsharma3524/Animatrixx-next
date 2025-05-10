@@ -17,22 +17,22 @@ const featuredContent = {
 
 // Mock data for content carousels
 const continueWatchingItems = [
-  { id: 1, title: "One Piece", type: "anime", episode: "Episode 1042", progress: 70 },
-  { id: 2, title: "Demon Slayer", type: "anime", episode: "Episode 8", progress: 45 },
-  { id: 3, title: "My Hero Academia", type: "anime", episode: "Episode 24", progress: 90 },
-  { id: 4, title: "Attack on Titan", type: "anime", episode: "Episode 12", progress: 30 },
-  { id: 5, title: "Jujutsu Kaisen", type: "anime", episode: "Episode 5", progress: 60 },
+  { id: 1, title: "One Piece", type: "anime" as const, episode: "Episode 1042", progress: 70 },
+  { id: 2, title: "Demon Slayer", type: "anime" as const, episode: "Episode 8", progress: 45 },
+  { id: 3, title: "My Hero Academia", type: "anime" as const, episode: "Episode 24", progress: 90 },
+  { id: 4, title: "Attack on Titan", type: "anime" as const, episode: "Episode 12", progress: 30 },
+  { id: 5, title: "Jujutsu Kaisen", type: "anime" as const, episode: "Episode 5", progress: 60 },
 ]
 
 const popularMangaItems = [
-  { id: 6, title: "Chainsaw Man", type: "manga", chapter: "Chapter 120" },
-  { id: 7, title: "Spy x Family", type: "manga", chapter: "Chapter 65" },
-  { id: 8, title: "Tokyo Revengers", type: "manga", chapter: "Chapter 231" },
-  { id: 9, title: "Blue Lock", type: "manga", chapter: "Chapter 178" },
-  { id: 10, title: "One Punch Man", type: "manga", chapter: "Chapter 164" },
+  { id: 6, title: "Chainsaw Man", type: "manga" as const, chapter: "Chapter 120" },
+  { id: 7, title: "Spy x Family", type: "manga" as const, chapter: "Chapter 65" },
+  { id: 8, title: "Tokyo Revengers", type: "manga" as const, chapter: "Chapter 231" },
+  { id: 9, title: "Blue Lock", type: "manga" as const, chapter: "Chapter 178" },
+  { id: 10, title: "One Punch Man", type: "manga" as const, chapter: "Chapter 164" },
 ]
 
-const trendingItems = [
+const trendingItems: { id: number; title: string; type: "anime" | "manga" }[] = [
   { id: 11, title: "Frieren: Beyond Journey's End", type: "anime" },
   { id: 12, title: "Oshi no Ko", type: "anime" },
   { id: 13, title: "Bocchi the Rock!", type: "anime" },

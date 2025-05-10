@@ -1,10 +1,8 @@
-"use client"
+'use client'
 
 import Link from "next/link"
 import Image from "next/image"
 import { Bell, User } from "lucide-react"
-import { motion } from "framer-motion"
-
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import {
@@ -18,9 +16,14 @@ import {
 import { MobileMenu } from "@/components/mobile-menu"
 import { MobileSearch } from "@/components/mobile-search"
 
+import dynamic from 'next/dynamic'
+
+// Dynamically import motion components to ensure client-side rendering
+const MotionDiv = dynamic(() => import('framer-motion').then(mod => mod.motion.div), { ssr: false });
+
 export function MainNav() {
   return (
-    <motion.div
+    <MotionDiv
       className="container mx-auto flex h-16 items-center justify-between py-4 px-4"
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
@@ -29,7 +32,7 @@ export function MainNav() {
       <div className="flex items-center gap-6">
         <MobileMenu />
         <Link href="/" className="flex items-center gap-2">
-          <motion.div whileHover={{ rotate: 10 }} transition={{ duration: 0.2 }}>
+          <MotionDiv whileHover={{ rotate: 10 }} transition={{ duration: 0.2 }}>
             <Image
               src="/placeholder.svg?height=40&width=40"
               alt="Animatrixx Logo"
@@ -38,40 +41,35 @@ export function MainNav() {
               className="rounded-full"
               priority
             />
-          </motion.div>
-          <motion.span
+          </MotionDiv>
+          <MotionDiv
             className="hidden md:inline-block text-xl font-bold text-pink-400"
             initial={{ opacity: 0, x: -5 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.1, duration: 0.3 }}
           >
             Animatrixx
-          </motion.span>
+          </MotionDiv>
         </Link>
         <nav className="hidden md:flex items-center gap-6">
-          {[
-            { href: "/", label: "Home" },
-            { href: "/anime", label: "Anime" },
-            { href: "/manga", label: "Manga" },
-            { href: "/new", label: "New & Popular" },
-            { href: "/my-list", label: "My List" },
-          ].map((item, index) => (
-            <motion.div
-              key={item.href}
-              initial={{ opacity: 0, y: -5 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 + index * 0.05, duration: 0.3 }}
-            >
-              <Link href={item.href} className="text-sm font-medium hover:text-pink-400 transition-colors">
-                {item.label}
-              </Link>
-            </motion.div>
-          ))}
+          {[{ href: "/", label: "Home" }, { href: "/anime", label: "Anime" }, { href: "/manga", label: "Manga" }, { href: "/new", label: "New & Popular" }, { href: "/my-list", label: "My List" }]
+            .map((item, index) => (
+              <MotionDiv
+                key={item.href}
+                initial={{ opacity: 0, y: -5 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 + index * 0.05, duration: 0.3 }}
+              >
+                <Link href={item.href} className="text-sm font-medium hover:text-pink-400 transition-colors">
+                  {item.label}
+                </Link>
+              </MotionDiv>
+            ))}
         </nav>
       </div>
       <div className="flex items-center gap-4">
         <div className="relative hidden md:block">
-          <motion.div
+          <MotionDiv
             initial={{ opacity: 0, width: 0 }}
             animate={{ opacity: 1, width: "auto" }}
             transition={{ delay: 0.3, duration: 0.3 }}
@@ -98,10 +96,10 @@ export function MainNav() {
                 className="w-[200px] pl-8 bg-black/20 border-gray-700 focus-visible:ring-pink-500 text-sm"
               />
             </div>
-          </motion.div>
+          </MotionDiv>
         </div>
         <MobileSearch />
-        <motion.div
+        <MotionDiv
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.4, duration: 0.3 }}
@@ -110,8 +108,8 @@ export function MainNav() {
           <Button variant="ghost" size="icon" className="text-gray-300 hover:text-white" aria-label="Notifications">
             <Bell className="h-5 w-5" />
           </Button>
-        </motion.div>
-        <motion.div
+        </MotionDiv>
+        <MotionDiv
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.5, duration: 0.3 }}
@@ -148,8 +146,8 @@ export function MainNav() {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-        </motion.div>
+        </MotionDiv>
       </div>
-    </motion.div>
+    </MotionDiv>
   )
 }

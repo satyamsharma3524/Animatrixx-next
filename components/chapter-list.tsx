@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import { useState } from "react"
 import Link from "next/link"
@@ -11,7 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 interface Chapter {
   id: number
   number: number
-  title: string
+  title: string | null | undefined  // title can be null or undefined
   releaseDate: string
   pages: number
   isRead: boolean
@@ -30,8 +30,10 @@ export function ChapterList({ chapters, mangaId }: ChapterListProps) {
   // Filter and sort chapters
   const filteredChapters = chapters
     .filter(
-      (chapter) =>
-        chapter.title.toLowerCase().includes(filter.toLowerCase()) || chapter.number.toString().includes(filter),
+      (chapter) => {
+        const title = chapter.title && typeof chapter.title === 'string' ? chapter.title.toLowerCase() : '';
+        return title.includes(filter.toLowerCase()) || chapter.number.toString().includes(filter);
+      }
     )
     .sort((a, b) => {
       if (sortOrder === "newest") {
@@ -80,7 +82,7 @@ export function ChapterList({ chapters, mangaId }: ChapterListProps) {
                 <div className="h-5 w-5 rounded-full border border-zinc-700" />
               )}
               <div>
-                <div className="font-medium">{chapter.title}</div>
+                <div className="font-medium">{chapter.title || 'Untitled Chapter'}</div> {/* Default title */}
                 <div className="text-xs text-gray-400">
                   {chapter.pages} pages • {chapter.releaseDate}
                 </div>

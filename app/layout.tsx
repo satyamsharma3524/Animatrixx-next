@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     creator: "@animatrixx",
   },
   manifest: "/manifest.json",
-    generator: 'v0.dev'
+  generator: 'v0.dev'
 }
 
 export default function RootLayout({
@@ -62,7 +62,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className={inter.variable}>
-      <body className="min-h-screen bg-background text-foreground antialiased">
+      <body className="min-h-screen bg-background text-foreground antialiased" suppressHydrationWarning>
         <Providers>
           {children}
           <Toaster />
@@ -71,6 +71,3 @@ export default function RootLayout({
     </html>
   )
 }
-
-
-import './globals.css'

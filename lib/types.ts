@@ -10,17 +10,6 @@ export interface AnimeItem {
   year: number
 }
 
-export interface MangaItem {
-  id: number
-  title: string
-  cover: string
-  author: string
-  genres: string[]
-  status: string
-  chapters: number
-  rating: number
-}
-
 export interface Episode {
   id: number
   number: number
@@ -39,6 +28,37 @@ export interface Chapter {
   releaseDate: string
   pages: number
   isRead: boolean
+  genres: string[];
+  index: number
+}
+
+export interface MangaItem {
+  id: number;
+  title: string;
+  alt_titles: alt_title[];
+  cover_image: string;
+  author: string;
+  genres: string[];
+  status: string;
+  chapters: number;
+  rating: number;
+  description?: string;
+  tags?: Tag[];
+}
+
+export interface MangaListResponse {
+  results: MangaItem[];
+  next: string | null;
+};
+
+
+export interface alt_title {
+  en: string;
+  ko?: string;
+}
+
+export interface Tag {
+  title: string;
 }
 
 export interface ContentItem {

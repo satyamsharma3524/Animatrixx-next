@@ -137,163 +137,74 @@ export function getAnimeList(): AnimeItem[] {
   ]
 }
 
-export function getMangaList(): MangaItem[] {
-  return [
-    {
-      id: 1,
-      title: "Chainsaw Man",
-      cover: "/placeholder.svg?height=450&width=300&text=Chainsaw Man",
-      author: "Tatsuki Fujimoto",
-      genres: ["Action", "Horror", "Supernatural"],
-      status: "Ongoing",
-      chapters: 120,
-      rating: 4.8,
-    },
-    {
-      id: 2,
-      title: "Spy x Family",
-      cover: "/placeholder.svg?height=450&width=300&text=Spy x Family",
-      author: "Tatsuya Endo",
-      genres: ["Action", "Comedy", "Slice of Life"],
-      status: "Ongoing",
-      chapters: 65,
-      rating: 4.9,
-    },
-    {
-      id: 3,
-      title: "Tokyo Revengers",
-      cover: "/placeholder.svg?height=450&width=300&text=Tokyo Revengers",
-      author: "Ken Wakui",
-      genres: ["Action", "Drama", "Supernatural"],
-      status: "Completed",
-      chapters: 231,
-      rating: 4.5,
-    },
-    {
-      id: 4,
-      title: "Blue Lock",
-      cover: "/placeholder.svg?height=450&width=300&text=Blue Lock",
-      author: "Muneyuki Kaneshiro",
-      genres: ["Sports", "Drama"],
-      status: "Ongoing",
-      chapters: 178,
-      rating: 4.7,
-    },
-    {
-      id: 5,
-      title: "One Punch Man",
-      cover: "/placeholder.svg?height=450&width=300&text=One Punch Man",
-      author: "ONE",
-      genres: ["Action", "Comedy", "Superhero"],
-      status: "Ongoing",
-      chapters: 164,
-      rating: 4.9,
-    },
-    {
-      id: 6,
-      title: "Berserk",
-      cover: "/placeholder.svg?height=450&width=300&text=Berserk",
-      author: "Kentaro Miura",
-      genres: ["Action", "Adventure", "Dark Fantasy"],
-      status: "Ongoing",
-      chapters: 364,
-      rating: 4.9,
-    },
-    {
-      id: 7,
-      title: "Vagabond",
-      cover: "/placeholder.svg?height=450&width=300&text=Vagabond",
-      author: "Takehiko Inoue",
-      genres: ["Action", "Adventure", "Historical"],
-      status: "On Hiatus",
-      chapters: 327,
-      rating: 4.9,
-    },
-    {
-      id: 8,
-      title: "Vinland Saga",
-      cover: "/placeholder.svg?height=450&width=300&text=Vinland Saga",
-      author: "Makoto Yukimura",
-      genres: ["Action", "Adventure", "Historical"],
-      status: "Ongoing",
-      chapters: 198,
-      rating: 4.8,
-    },
-    {
-      id: 9,
-      title: "Monster",
-      cover: "/placeholder.svg?height=450&width=300&text=Monster",
-      author: "Naoki Urasawa",
-      genres: ["Mystery", "Psychological", "Thriller"],
-      status: "Completed",
-      chapters: 162,
-      rating: 4.9,
-    },
-    {
-      id: 10,
-      title: "One Piece",
-      cover: "/placeholder.svg?height=450&width=300&text=One Piece",
-      author: "Eiichiro Oda",
-      genres: ["Action", "Adventure", "Fantasy"],
-      status: "Ongoing",
-      chapters: 1080,
-      rating: 4.9,
-    },
-    {
-      id: 11,
-      title: "Jujutsu Kaisen",
-      cover: "/placeholder.svg?height=450&width=300&text=Jujutsu Kaisen",
-      author: "Gege Akutami",
-      genres: ["Action", "Supernatural", "Horror"],
-      status: "Ongoing",
-      chapters: 210,
-      rating: 4.8,
-    },
-    {
-      id: 12,
-      title: "Demon Slayer",
-      cover: "/placeholder.svg?height=450&width=300&text=Demon Slayer",
-      author: "Koyoharu Gotouge",
-      genres: ["Action", "Supernatural", "Historical"],
-      status: "Completed",
-      chapters: 205,
-      rating: 4.8,
-    },
-  ]
-}
-
 export function getEpisodes(animeId: number): Episode[] {
-  return Array.from({ length: 24 }, (_, i) => ({
-    id: i + 1,
-    number: i + 1,
-    title: `Episode ${i + 1}: ${["A New Beginning", "The Hero's Journey", "Darkness Falls", "Rising Hope", "Final Battle"][i % 5]}`,
-    thumbnail: `/placeholder.svg?height=180&width=320&text=Episode ${i + 1}`,
-    duration: "24 min",
-    releaseDate: new Date(2025, 3, 5 - i).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-    }),
-    description: "Izuku faces new challenges as he continues his journey to become the greatest hero.",
-    isWatched: i < 5,
-  }))
+  return Array.from({ length: 24 }, (_, i) => {
+    const date = new Date(2025, 3, 5 - i).toISOString().split("T")[0];
+    return {
+      id: i + 1,
+      number: i + 1,
+      title: `Episode ${i + 1}: Sample Title`,
+      thumbnail: `/placeholder.svg?height=180&width=320&text=Episode ${i + 1}`,
+      duration: "24 min",
+      releaseDate: date,
+      description: "Sample description",
+      isWatched: i < 5,
+    };
+  });
 }
 
-export function getChapters(mangaId: number): Chapter[] {
-  return Array.from({ length: 120 }, (_, i) => ({
-    id: 120 - i,
-    number: 120 - i,
-    title: `Chapter ${120 - i}: ${["The Awakening", "Darkness Falls", "New Beginnings", "The Hunt", "Revelations"][i % 5]}`,
-    releaseDate: new Date(2025, 3, 2 - i).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-    }),
-    pages: Math.floor(Math.random() * 20) + 15,
-    isRead: i < 5,
-  }))
+export async function getMangaList(page: number): Promise<{ results: MangaItem[]; next: string | null }> {
+  try {
+    const response = await fetch(`https://server.animatrixx.in/api/manga?page=${page}`);
+    
+    // Log the raw response to inspect
+    console.log("API Response Status:", response.status);
+    console.log("API Response Headers:", response.headers);
+    
+    if (!response.ok) {
+      throw new Error(`Failed to fetch: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+
+    console.log("Fetched Data:", data);  // Log the data for inspection
+
+    return {
+      results: data.results || [],
+      next: data.next || null,
+    };
+  } catch (error) {
+    console.error("Error fetching manga list:", error);
+    throw new Error(`Failed to fetch manga list: ${error.message}`);
+  }
 }
 
+
+
+
+
+
+export async function getMangaDetails(mangaId: number) {
+  const response = await fetch(`https://server.animatrixx.in/api/manga/${mangaId}`);
+  if (!response.ok) {
+    throw new Error("Failed to fetch manga details");
+  }
+  const data = await response.json();
+  return {
+    id: data.id,
+    title: data.title,
+    cover: data.cover_image || "/placeholder.svg",
+    description: data.description,
+    genres: data.tags || [],
+    status: data.status,
+    releaseYear: data.releaseYear,
+    rating: data.rating,
+    chapters: data.chapters,
+    lastUpdated: data.lastUpdated,
+    publisher: data.publisher,
+    alternativeTitles: data.alternativeTitles || [],
+  };
+}
 export function getHistoryItems(): HistoryItem[] {
   return [
     {

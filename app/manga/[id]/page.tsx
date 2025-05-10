@@ -1,15 +1,15 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Bookmark, ChevronLeft, Heart, Share2, Star } from "lucide-react"
-import type { Metadata } from "next"
 import { notFound } from "next/navigation"
+import type { Metadata } from "next"
 
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { MainNav } from "@/components/main-nav"
 import { ChapterList } from "@/components/chapter-list"
 import { Footer } from "@/components/footer"
-import { getChapters } from "@/lib/data"
+import { getChapters, getMangaDetails } from "@/lib/data"  // You need to implement the 'getMangaDetails' function.
 
 interface MangaDetailPageProps {
   params: { id: string }
@@ -35,34 +35,21 @@ export async function generateMetadata({ params }: MangaDetailPageProps): Promis
 }
 
 export default async function MangaDetailPage({ params }: MangaDetailPageProps) {
-  // In a real app, you would fetch manga data based on the ID
   const mangaId = Number.parseInt(params.id)
 
   if (isNaN(mangaId)) {
     notFound()
   }
 
-  // Mock manga data
-  const manga = {
-    id: mangaId,
-    title: "Chainsaw Man",
-    cover: `/placeholder.svg?height=450&width=300&text=Manga ${mangaId}`,
-    author: "Tatsuki Fujimoto",
-    artist: "Tatsuki Fujimoto",
-    description:
-      "Denji is a young man trapped in poverty, working as a Devil Hunter alongside his dog-like Devil, Pochita, to pay off the debt left by his father. Denji is betrayed and killed, but Pochita makes a contract with him, and Denji is reborn as the chainsaw-human hybrid known as 'Chainsaw Man.'",
-    genres: ["Action", "Horror", "Supernatural", "Comedy", "Drama"],
-    status: "Ongoing",
-    releaseYear: 2018,
-    rating: 4.8,
-    chapters: 120,
-    lastUpdated: "April 2, 2025",
-    publisher: "Shueisha",
-    alternativeTitles: ["チェンソーマン", "Человек-бензопила", "Hombre Motosierra"],
+  // Fetch Manga data from the API
+  const manga = await getMangaDetails(mangaId)
+
+  if (!manga) {
+    notFound()
   }
 
   // Get chapters data
-  const chapters = getChapters(mangaId)
+  const chapters = await getChapters(mangaId)
 
   return (
     <div className="min-h-screen bg-black text-white flex flex-col">
@@ -126,14 +113,7 @@ export default async function MangaDetailPage({ params }: MangaDetailPageProps) 
                     <div className="text-gray-400">Release Year</div>
                     <div className="text-white">{manga.releaseYear}</div>
                   </div>
-                  <div>
-                    <div className="text-gray-400">Author</div>
-                    <div className="text-white">{manga.author}</div>
-                  </div>
-                  <div>
-                    <div className="text-gray-400">Artist</div>
-                    <div className="text-white">{manga.artist}</div>
-                  </div>
+                  
                   <div>
                     <div className="text-gray-400">Publisher</div>
                     <div className="text-white">{manga.publisher}</div>
@@ -152,14 +132,6 @@ export default async function MangaDetailPage({ params }: MangaDetailPageProps) 
 
             <div className="flex-1">
               <h1 className="text-3xl font-bold mb-2">{manga.title}</h1>
-
-              <div className="flex flex-wrap gap-2 mb-4">
-                {manga.genres.map((genre, index) => (
-                  <Badge key={index} className="bg-pink-600/20 text-pink-400 hover:bg-pink-600/30">
-                    {genre}
-                  </Badge>
-                ))}
-              </div>
 
               <div className="mb-8">
                 <h2 className="text-lg font-semibold mb-2">Synopsis</h2>
